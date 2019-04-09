@@ -40,6 +40,21 @@ function maximum (a)
     return m, mi
 end
 
-a= {x=1,y=2 }
-maximum(a)
+a= {1,3}
+x,y,z = maximum(a),2
+print(x,y,z) -- 3	2	nil
 
+
+--[[
+-- 3.可变长度函数
+--语法格式：function 函数名(...) end
+-- ]]
+function printData(...)
+    local printResult = ""
+    for i,v in pairs(arg) do
+        printResult = printResult .. tostring(v) .. "\t"
+    end
+    printResult = printResult .. "\n"
+    print(printResult)
+end
+printData("哈哈","12")
