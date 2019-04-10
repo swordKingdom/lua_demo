@@ -49,7 +49,8 @@ print(x,y,z) -- 3	2	nil
 -- 3.可变长度函数
 --语法格式：function 函数名(...) end
 -- ]]
-function printData(...)
+function printData(a,b,...)
+    print(a,b)
     local printResult = ""
     for i,v in pairs(arg) do
         printResult = printResult .. tostring(v) .. "\t"
@@ -57,4 +58,69 @@ function printData(...)
     printResult = printResult .. "\n"
     print(printResult)
 end
-printData("哈哈","12")
+printData("hh","12","1")
+
+
+--[[
+-- 4.table的排序函数
+-- ]]
+network = {
+    {name = "grauna", IP = "210.26.30.34"},
+    {name = "arraial", IP = "210.26.30.23"},
+    {name = "lua", IP = "210.26.23.12"},
+    {name = "derain", IP = "210.26.23.20"},
+}
+table.sort(network, function (a,b)
+    return (a.name > b.name)
+end)
+for i,v in pairs(network) do
+    print(v.name)
+end
+
+
+--[[
+-- 5.函数作为参数
+ ]]
+function process(a)
+    a()
+end
+
+process(function()
+    print("hello")
+end)
+
+--[[
+--6.闭包的使用
+ ]]
+function test()
+    local hh="hh"
+    return function()
+        print(hh)
+    end
+end
+Func = test()
+Func()
+oldSin = math.sin
+math.sin = function (x)
+    return oldSin(x*math.pi/180)
+end
+
+
+
+--[[
+--7.非全局函数
+ ]]
+Lib = {}
+Lib.foo = function (x,y) return x + y end
+Lib.goo = function (x,y) return x - y end
+--或者
+Lib = {}
+function Lib.foo (x,y)
+    return x + y
+end
+function Lib.goo (x,y)
+    return x - y
+end
+
+local f = function (...)
+end
